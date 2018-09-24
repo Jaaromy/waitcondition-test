@@ -11,13 +11,4 @@ phases:
     commands:
       - echo $WAIT_SIGNAL
       - |
-        cat << EOF > success.json
-        {
-          "Status" : "SUCCESS",
-          "Reason" : "Configuration Complete",
-          "UniqueId" : "SIGNALDONE",
-          "Data" : "Application has completed configuration."
-        }
-
-        EOF
-      - curl -T success.json PUT "$WAIT_SIGNAL"
+        curl -X PUT -H 'Content-Type:' --data-binary '{"Status" : "SUCCESS","Reason" : "Configuration Complete","UniqueId" : "ID1234","Data" : "Application has completed configuration."}' "$WAIT_SIGNAL"
