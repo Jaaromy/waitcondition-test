@@ -12,4 +12,4 @@ phases:
       - echo $WAIT_SIGNAL
       - echo $CODEBUILD_BUILD_ID
       - |
-        curl -X PUT -H 'Content-Type:' --data-binary '{"Status" : "SUCCESS","Reason" : "Configuration Complete","UniqueId" : \"$CODEBUILD_BUILD_ID\","Data" : "Application is ready."}' "$WAIT_SIGNAL"
+        curl -X PUT -H 'Content-Type:' --data-binary '{"Status" : "SUCCESS","Reason" : "Configuration Complete","UniqueId" : "ID","Data" : "Application is ready."}' "$WAIT_SIGNAL"
