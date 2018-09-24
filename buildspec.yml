@@ -10,3 +10,15 @@ phases:
   post_build:
     commands:
       - echo $WAIT_SIGNAL
+      - |
+        curl -X PUT $WAIT_SIGNAL \
+        -H 'Content-Type: text/json' \
+        -d @- << EOF
+
+        {
+          "Status" : "SUCCESS",
+          "Reason" : "Configuration Complete",
+          "UniqueId" : "SIGNALDONE",
+          "Data" : "Application has completed configuration."
+        }
+        EOF
