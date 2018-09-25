@@ -10,13 +10,4 @@ phases:
   post_build:
     commands:
       - |
-        curl -X PUT $WAIT_SIGNAL \
-        -H 'Content-Type:' \
-        --data-binary -@ <<EOF
-        '{
-            "Status" : "SUCCESS",
-            "Reason" : "Configuration Complete",
-            "UniqueId" : "ID",
-            "Data" : "Application is ready."
-        }'
-        EOF
+        curl -X PUT -H 'Content-Type:' --data-binary '{"Status" : "SUCCESS","Reason" : "Configuration Complete","UniqueId" : "ID","Data" : "Application is ready."}' "$WAIT_SIGNAL"
