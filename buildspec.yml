@@ -9,7 +9,14 @@ phases:
       - npm test
   post_build:
     commands:
-      - echo $WAIT_SIGNAL
-      - echo $CODEBUILD_BUILD_ID
       - |
-        curl -X PUT -H 'Content-Type:' --data-binary '{"Status" : "SUCCESS","Reason" : "Configuration Complete","UniqueId" : "ID","Data" : "Application is ready."}' "$WAIT_SIGNAL"
+        curl -X PUT $WAIT_SIGNAL \
+        -H 'Content-Type:' \
+        --data-binary -@ <<EOF
+        '{
+            "Status" : "SUCCESS",
+            "Reason" : "Configuration Complete",
+            "UniqueId" : "ID",
+            "Data" : "Application is ready."
+        }'
+        EOF
